@@ -1,0 +1,115 @@
+<body>
+  	<div id="wrapper">
+      
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><a href="../index.html">Hi, <?php echo $this->fetchSpecific(0, 'fName')." ".$this->fetchSpecific(0, 'lName'); ?>! Sign out</a></li> 
+          <li><a href="#" data-target="#myModal" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> View profile</a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-th-large"></i> View Matches</a></li>   
+          <li><a href="student2.php"><i class="glyphicon glyphicon-briefcase"></i> Job History</a></li>
+        </ul>
+      </div>
+          
+      <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Your Profile</h4>
+          </div>
+          <div class="modal-body">
+            
+            
+            
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                  
+                      <h4>Student ID: <?php echo $this->fetchSpecific(0, 'stuID');?></h4>
+                  </div>
+                  <div class="panel-body">
+                      <p><strong>First Name: </strong><?php echo $this->fetchSpecific(0, 'fName');?></p>
+                      <p><strong>Last Name: </strong><?php echo $this->fetchSpecific(0, 'lName');?></p>
+                      <p><strong>Address: </strong><?php echo $this->fetchSpecific(0, 'address');?></p>
+                      <p><strong>Email: </strong><?php echo $this->fetchSpecific(0, 'email');?></p>
+                      
+                      <hr>
+                      
+                      <p><strong>Contact Number: </strong><?php echo $this->fetchSpecific(0, 'contactNum');?></p>
+                      <p><strong>Major: </strong><?php echo $this->fetchSpecific(0, 'major');?></p>
+                      <p><strong>GPA: </strong><?php echo $this->fetchSpecific(0, 'gpa');?></p>
+                      <p><strong>Academic Year: </strong><?php echo $this->fetchSpecific(0, 'academicYear');?></p>
+                      <p><strong>Skills:</strong>
+                      <?php foreach($this->fetchResults(2) as $result)
+						{
+							echo " ".$result;
+						}
+						?></p>
+                      
+                      <hr>
+                      
+                      <p><strong>Resume: </strong><button type="button" class="btn btn-primary btn-xs">Download Resume</button></p>
+                      <p><strong>Transcript: </strong><button type="button" class="btn btn-primary btn-xs">Download Transcript</button></p>
+                  </div>
+                  <div class="panel-footer">
+                      <p><strong>Total Credits:</strong> '.$studentData["totalCredits"].'</p>
+                  </div>
+              </div>
+              
+              <button class="btn btn-primary btn-sm">View Job History</button>
+            
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+<!-- Page content -->
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1>
+            <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+            Matched Jobs:
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="lead">Below is a list of the jobs you have been matched for:</p>
+            </div>
+
+          <?php foreach($this->fetchResults(1) as $result)
+		{
+		/* List all the jobs that student qualifies for: */
+         echo '<div class="col-md-6">
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                      <p><strong>JobID:</strong> '.$this->fetchSpecific(1, 'jobID').'</p>
+                      <p><strong>Title of position:</strong>'.$this->fetchSpecific(1, 'positionTitle').'</p>
+                  </div>
+                  <div class="panel-body">
+                      <p><strong>For Company:</strong>'.$this->fetchSpecific(1, 'compID').'</p>
+                      <p><strong>Job Type:</strong> '.$this->fetchSpecific(1, 'jobType').'</p>
+                      
+                      <p><strong>Division:</strong>'.$this->fetchSpecific(1, 'division').'</p>
+                      <p><strong>Salary:</strong> '.$this->fetchSpecific(1, 'minSalary').'</p>
+                      <hr>
+                      <p><strong>Description:</strong>'.$this->fetchSpecific(1, 'jobDescription').'</p>
+                      <p><strong>Required GPA:</strong>'.$this->fetchSpecific(1, 'minGPA').'</p>
+                      <p><strong>Looking for:</strong>'.$this->fetchSpecific(1, 'desiredAcademicYear').'</p>
+                      <p><strong>Posted on:</strong>'.$this->fetchSpecific(1, 'postDate').'</p>
+                      <p><strong>Applicable Skills:</strong> '.$this->fetchSpecific(1, 'skills').'</p>
+                  </div>
+                  <div class="panel-footer">
+                      <button type="button" class="btn btn-success btn-lg btn-block">Apply now!</button>
+                  </div>
+              </div>
+            </div>';
+            }?>
+
+        	</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
