@@ -1,8 +1,8 @@
 <?php
 
 	ini_set('display_errors',1);
-			ini_set('display_startup_errors',1);
-			error_reporting(-1);
+	ini_set('display_startup_errors',1);
+	error_reporting(-1);
 
 	class TemplateMaker{
 		
@@ -42,9 +42,6 @@
 		public function fetchSpecific($location, $item)
 		{
 			$temp = $this->searchResults[$location];
-			//echo "inside temp array: ".var_dump($temp);
-			//echo "<br>";
-			//echo "inside item: ".var_dump($temp[$item]);
 			return $temp[$item];
 		}
 	
